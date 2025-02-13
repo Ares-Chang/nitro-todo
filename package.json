@@ -6,11 +6,20 @@
     "prepare": "nitro prepare",
     "preview": "node .output/server/index.mjs",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "postinstall": "npx simple-git-hooks"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.2.0",
     "eslint": "^9.20.0",
-    "nitropack": "latest"
+    "lint-staged": "^15.4.3",
+    "nitropack": "latest",
+    "simple-git-hooks": "^2.11.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }
