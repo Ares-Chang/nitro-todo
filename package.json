@@ -4,9 +4,13 @@
     "build": "nitro build",
     "dev": "nitro dev --host",
     "prepare": "nitro prepare",
-    "preview": "node .output/server/index.mjs"
+    "preview": "node .output/server/index.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^4.2.0",
+    "eslint": "^9.20.0",
     "nitropack": "latest"
   }
 }
