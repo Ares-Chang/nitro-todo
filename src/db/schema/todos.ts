@@ -1,8 +1,8 @@
 import { index, int, mysqlTable, text, timestamp, varchar } from 'drizzle-orm/mysql-core'
 import { TimeStamp } from '../share'
-import { groupsTable } from './groups'
+import { groups } from './groups'
 
-export const todosTable = mysqlTable(
+export const todos = mysqlTable(
   'todos',
   {
     id: int('id').primaryKey().autoincrement().notNull(),
@@ -11,7 +11,7 @@ export const todosTable = mysqlTable(
     dueTime: timestamp('due_time'),
     groupId: int('group_id')
       .notNull()
-      .references(() => groupsTable.id, {
+      .references(() => groups.id, {
         // 关键配置：级联删除
         onDelete: 'cascade',
       }),

@@ -1,7 +1,7 @@
 import { index, int, mysqlTable, varchar } from 'drizzle-orm/mysql-core'
 import { TimeStamp } from '../share'
 
-export const groupsTable = mysqlTable(
+export const groups = mysqlTable(
   'groups',
   {
     id: int('id').primaryKey().autoincrement().notNull(),
