@@ -3,6 +3,9 @@
   "scripts": {
     "build": "nitro build",
     "dev": "nitro dev --host",
+    "docker:start": "docker compose up -d",
+    "docker:stop": "docker compose stop",
+    "docker:down": "docker compose down --volumes",
     "prepare": "nitro prepare",
     "preview": "node .output/server/index.mjs",
     "lint": "eslint .",
