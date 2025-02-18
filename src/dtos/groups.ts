@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
 export const groupsCreateSchema = z.object({
-  name: z.string({ required_error: '名称不能为空', invalid_type_error: '名称必须为字符串' }).min(1),
+  name: z.string().min(1, { message: '名称不能为空' }),
+}, {
+  required_error: '参数格式不正确',
 })
