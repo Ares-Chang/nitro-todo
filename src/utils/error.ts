@@ -82,7 +82,7 @@ export function NotFound(message: string, args: CreateErrorOptions = {}) {
  * @param message 错误消息
  * @param args 其他参数
  */
-export function InternalServerError(message: string, args: CreateErrorOptions = {}) {
+export function throwInternalServerError(message: string, args: CreateErrorOptions = {}) {
   throwError(message, HttpStatus.INTERNAL_SERVER_ERROR, {
     statusMessage: 'internal server error',
     ...args,

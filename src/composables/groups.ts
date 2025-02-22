@@ -65,3 +65,18 @@ export async function updateGroup(id: number, name: string) {
 
   return getGroup(id)
 }
+
+/**
+ * 删除分组
+ * @param id 分组ID
+ * @returns 是否删除成功
+ */
+export async function deleteGroup(id: number) {
+  // 处理更新失败的情况
+  try {
+    await db.update(groups).set({ deletedAt: new Date() }).where(eq(groups.id, id))
+  }
+  catch {
+    throw throwInternalServerError('删除失败')
+  }
+}
