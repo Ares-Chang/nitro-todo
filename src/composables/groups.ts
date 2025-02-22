@@ -32,6 +32,18 @@ export async function getGroup(id: number) {
 }
 
 /**
+ * 获取所有分组
+ * @returns 分组列表
+ */
+export async function getGroups() {
+  return db.query.groups.findMany({
+    columns: {
+      deletedAt: false,
+    },
+  })
+}
+
+/**
  * 创建分组
  * @param name 分组名称
  * @returns 分组
