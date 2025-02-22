@@ -19,7 +19,12 @@ export async function checkGroupExist(name: string) {
  * @returns 分组列表
  */
 export async function getGroups() {
-  return db.select().from(groups).where(isNull(groups.deletedAt))
+  try {
+    return db.select().from(groups).where(isNull(groups.deletedAt))
+  }
+  catch {
+    throw throwInternalServerError('获取失败')
+  }
 }
 
 /**
@@ -27,7 +32,12 @@ export async function getGroups() {
  * @param name 分组名称
  */
 export async function createGroup(name: string) {
-  await db.insert(groups).values({ name })
+  try {
+    await db.insert(groups).values({ name })
+  }
+  catch {
+    throw throwInternalServerError('创建失败')
+  }
 }
 
 /**
@@ -36,7 +46,12 @@ export async function createGroup(name: string) {
  * @param name 分组名称
  */
 export async function updateGroup(id: number, name: string) {
-  await db.update(groups).set({ name }).where(eq(groups.id, id))
+  try {
+    await db.update(groups).set({ name }).where(eq(groups.id, id))
+  }
+  catch {
+    throw throwInternalServerError('更新失败')
+  }
 }
 
 /**
@@ -44,7 +59,6 @@ export async function updateGroup(id: number, name: string) {
  * @param id 分组ID
  */
 export async function deleteGroup(id: number) {
-  // 处理更新失败的情况
   try {
     await db.update(groups).set({ deletedAt: new Date() }).where(eq(groups.id, id))
   }

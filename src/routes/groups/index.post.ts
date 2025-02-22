@@ -9,10 +9,5 @@ export default defineEventHandler(async (event) => {
   if (group)
     throw throwBadRequest('分组已存在')
 
-  try {
-    await createGroup(name)
-  }
-  catch {
-    throw throwBadRequest('创建失败')
-  }
+  await createGroup(name)
 })
