@@ -1,5 +1,10 @@
 import { getGroups } from '~/composables/groups'
 
 export default defineEventHandler(() => {
-  return getGroups()
+  try {
+    return getGroups()
+  }
+  catch {
+    throw throwBadRequest('获取失败')
+  }
 })

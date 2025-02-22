@@ -2,13 +2,12 @@ import { deleteGroup } from '~/composables/groups'
 import { groupsSelectSchema } from '~/dtos/groups'
 
 export default defineEventHandler(async (event) => {
-  const id = await getValidatedRouterParams(event, (d) => {
-    const { success, data, error } = groupsSelectSchema.safeParse(d)
-    if (!success)
-      throw throwBadRequest(error?.issues[0].message)
+  const id = await getValidatedRouterParams(event, groupsSelectSchema.parse)
 
-    return data.id
-  })
-
-  return deleteGroup(Number(id))
+  try {
+    await deleteGroup(Number(id))
+  }
+  catch {
+    throw throwBadRequest('删除失败')
+  }
 })
