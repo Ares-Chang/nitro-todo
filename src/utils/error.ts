@@ -34,7 +34,7 @@ export function throwError(message: string, code = HttpStatus.BAD_REQUEST, args:
  * @param message 错误消息
  * @param args 其他参数
  */
-export function BadRequest(message: string, args: CreateErrorOptions = {}) {
+export function throwBadRequest(message: string, args: CreateErrorOptions = {}) {
   throwError(message, HttpStatus.BAD_REQUEST, {
     statusMessage: 'bad request',
     ...args,
@@ -46,7 +46,7 @@ export function BadRequest(message: string, args: CreateErrorOptions = {}) {
  * @param message 错误消息
  * @param args 其他参数
  */
-export function Unauthorized(message: string, args: CreateErrorOptions = {}) {
+export function throwUnauthorized(message: string, args: CreateErrorOptions = {}) {
   throwError(message, HttpStatus.UNAUTHORIZED, {
     statusMessage: 'unauthorized',
     ...args,
@@ -58,7 +58,7 @@ export function Unauthorized(message: string, args: CreateErrorOptions = {}) {
  * @param message 错误消息
  * @param args 其他参数
  */
-export function Forbidden(message: string, args: CreateErrorOptions = {}) {
+export function throwForbidden(message: string, args: CreateErrorOptions = {}) {
   throwError(message, HttpStatus.FORBIDDEN, {
     statusMessage: 'forbidden',
     ...args,
@@ -70,7 +70,7 @@ export function Forbidden(message: string, args: CreateErrorOptions = {}) {
  * @param message 错误消息
  * @param args 其他参数
  */
-export function NotFound(message: string, args: CreateErrorOptions = {}) {
+export function throwNotFound(message: string, args: CreateErrorOptions = {}) {
   throwError(message, HttpStatus.NOT_FOUND, {
     statusMessage: 'not found',
     ...args,

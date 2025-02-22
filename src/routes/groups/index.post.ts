@@ -5,12 +5,12 @@ export default defineEventHandler(async (event) => {
   const { success, data, error } = await readValidatedBody(event, body => groupsCreateSchema.safeParse(body))
 
   if (!success)
-    throw BadRequest(error?.issues[0].message)
+    throw throwBadRequest(error?.issues[0].message)
 
   // 先检查是否存在
   const group = await checkGroupExist(data.name)
   if (group)
-    throw BadRequest('分组已存在')
+    throw throwBadRequest('分组已存在')
 
   try {
     // 创建并返回
@@ -19,6 +19,6 @@ export default defineEventHandler(async (event) => {
     return newGroup
   }
   catch (error) {
-    throw BadRequest(error instanceof Error ? error.message : '创建错误')
+    throw throwBadRequest(error instanceof Error ? error.message : '创建错误')
   }
 })
