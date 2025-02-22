@@ -53,3 +53,15 @@ export async function createGroup(name: string) {
 
   return getGroup(id)
 }
+
+/**
+ * 更新分组
+ * @param id 分组ID
+ * @param name 分组名称
+ * @returns 分组
+ */
+export async function updateGroup(id: number, name: string) {
+  await db.update(groups).set({ name }).where(eq(groups.id, id))
+
+  return getGroup(id)
+}
