@@ -18,5 +18,10 @@ export default defineEventHandler(async (event) => {
     return data
   })
 
-  return updateGroup(Number(id), name!)
+  try {
+    await updateGroup(Number(id), name!)
+  }
+  catch {
+    throw throwBadRequest('更新失败')
+  }
 })

@@ -13,10 +13,7 @@ export default defineEventHandler(async (event) => {
     throw throwBadRequest('分组已存在')
 
   try {
-    // 创建并返回
-    const newGroup = await createGroup(data.name)
-
-    return newGroup
+    await createGroup(data.name)
   }
   catch (error) {
     throw throwBadRequest(error instanceof Error ? error.message : '创建错误')
