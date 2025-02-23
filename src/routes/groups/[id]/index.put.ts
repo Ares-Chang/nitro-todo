@@ -5,5 +5,5 @@ export default defineEventHandler(async (event) => {
   const { id } = await getValidatedRouterParams(event, groupsSelectSchema.parse)
   const { name } = await readValidatedBody(event, groupsUpdateSchema.parse)
 
-  await updateGroup(Number(id), name!)
+  await updateGroup(id, name!)
 })

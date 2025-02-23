@@ -47,7 +47,7 @@ export async function createGroup(name: string) {
  */
 export async function updateGroup(id: number, name: string) {
   try {
-    await db.update(groups).set({ name }).where(eq(groups.id, id))
+    await db.update(groups).set({ name, updatedAt: new Date() }).where(eq(groups.id, id))
   }
   catch {
     throw throwInternalServerError('更新失败')

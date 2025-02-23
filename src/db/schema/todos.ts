@@ -8,13 +8,15 @@ export const todos = mysqlTable(
     id: int('id').primaryKey().autoincrement().notNull(),
     title: varchar('title', { length: 255 }).notNull(),
     content: text('content'),
+    /** 截止时间 */
     dueTime: timestamp('due_time'),
-    groupId: int('group_id')
-      .notNull()
-      .references(() => groups.id, {
-        // 关键配置：级联删除
-        onDelete: 'cascade',
-      }),
+    /** 完成时间 */
+    completedAt: timestamp('completed_at'),
+    /** 分组 */
+    groupId: int('group_id').references(() => groups.id, {
+      // 关键配置：级联删除
+      onDelete: 'cascade',
+    }),
     ...TimeStamp,
   },
   // 添加索引优化查询
