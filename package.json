@@ -13,6 +13,7 @@
     "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "drizzle-orm": "^0.39.3",
     "drizzle-zod": "^0.7.0",
     "mysql2": "^3.12.0",

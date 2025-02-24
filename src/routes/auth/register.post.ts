@@ -10,5 +10,7 @@ export default defineEventHandler(async (event) => {
   if (await checkUserExists(email))
     throw throwBadRequest('邮箱已注册！')
 
-  return createUser({ name, email, password })
+  const hashedPassword = await hashPassword(password)
+
+  return createUser({ name, email, password: hashedPassword })
 })
