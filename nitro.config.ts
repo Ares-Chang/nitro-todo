@@ -5,12 +5,12 @@ const db = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
+  port: Number(process.env.DB_PORT),
 }
 
 const redis = {
   host: process.env.REDIS_HOST,
-  port: process.env.REDIS_PORT,
+  port: Number(process.env.REDIS_PORT),
   password: process.env.REDIS_PASSWORD,
 }
 
@@ -40,5 +40,11 @@ export default defineNitroConfig({
 
   runtimeConfig: {
     db,
+    email: {
+      host: process.env.EMAIL_HOST,
+      port: Number(process.env.EMAIL_PORT),
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
   },
 })
