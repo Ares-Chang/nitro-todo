@@ -2,7 +2,7 @@ import { checkUserExists, createUser } from '~/composables/users'
 import { userCreateSchema } from '~/dtos/users'
 
 export default defineEventHandler(async (event) => {
-  const { name, email, password } = await readValidatedBody(event, userCreateSchema.omit({
+  const { name, email, password, code } = await readValidatedBody(event, userCreateSchema.omit({
     id: true,
     userId: true,
   }).parse)
@@ -10,7 +10,20 @@ export default defineEventHandler(async (event) => {
   if (await checkUserExists(email))
     throw throwBadRequest('邮箱已注册！')
 
+  const key = generateVerificationCodeKey(email, 'register')
+
+  const redisCode = await getRedisItem(key)
+
+  if (redisCode !== code)
+    throw throwBadRequest('验证码错误！')
+
   const hashedPassword = await hashPassword(password)
 
-  return createUser({ name, email, password: hashedPassword })
+  await createUser({ name, email, password: hashedPassword })
+
+  await removeRedisItem(key)
+
+  return {
+    data: '注册成功',
+  }
 })

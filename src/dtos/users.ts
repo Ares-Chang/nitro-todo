@@ -16,6 +16,7 @@ const userCredentialsSchema = createInsertSchema(userCredentials, {
 export const userCreateSchema = z.object({
   ...userProfilesSchema.shape,
   ...userCredentialsSchema.shape,
+  code: z.string().nonempty('验证码不能为空'),
 })
 
 export type UserCreate = z.infer<typeof userCreateSchema>

@@ -23,7 +23,7 @@ export async function checkUserExists(email: string) {
  * 创建用户
  * @param user 用户
  */
-export async function createUser(user: Omit<UserCreate, 'id' | 'userId'>) {
+export async function createUser(user: Omit<UserCreate, 'id' | 'userId' | 'code'>) {
   try {
     await db.transaction(async (tx) => {
       const id = nanoid()
