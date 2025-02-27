@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
 
   const redisCode = await getRedisItem(key)
 
-  if (redisCode !== code)
+  if (Number(redisCode) !== Number(code))
     throw throwBadRequest('验证码错误！')
 
   const hashedPassword = await hashPassword(password)
