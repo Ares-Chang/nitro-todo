@@ -46,5 +46,6 @@ export default defineNitroConfig({
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    JWT_SECRET: '',
   },
 })

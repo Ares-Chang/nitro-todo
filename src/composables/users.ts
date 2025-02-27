@@ -33,6 +33,25 @@ export async function createUser(user: Omit<UserCreate, 'id' | 'userId' | 'code'
   }
   catch (error) {
     console.error(error)
-    throw new Error('创建用户失败')
+    throw throwInternalServerError('创建用户失败')
+  }
+}
+
+/**
+ * 获取用户
+ * @param email 邮箱
+ * @returns 用户
+ */
+export async function getUser(email: string) {
+  try {
+    return await db.select()
+      .from(userCredentials)
+      .innerJoin(userProfiles, eq(userCredentials.userId, userProfiles.id))
+      .where(eq(userCredentials.email, email))
+      .then(result => result[0])
+  }
+  catch (error) {
+    console.error(error)
+    throw throwInternalServerError('获取用户失败')
   }
 }
