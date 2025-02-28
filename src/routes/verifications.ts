@@ -3,7 +3,7 @@ import { verificationSchema } from '~/dtos/verifications'
 export default defineEventHandler(async (event) => {
   const { email, type } = await readValidatedBody(event, verificationSchema.parse)
 
-  const key = generateVerificationCodeKey(email, type)
+  const key = getRedisVerificationKey(email, type)
 
   if (await getRedisItem(key))
     throw throwBadRequest('验证码已发送！')

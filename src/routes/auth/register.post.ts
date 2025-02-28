@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
   if (await checkUserExists(email))
     throw throwBadRequest('邮箱已注册！')
 
-  const key = generateVerificationCodeKey(email, 'register')
+  const key = getRedisVerificationKey(email, 'register')
 
   const redisCode = await getRedisItem(key)
 

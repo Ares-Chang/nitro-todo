@@ -10,10 +10,10 @@ interface JwtPayload {
 /**
  * 签发 Token
  * @param payload 载荷
- * @param expiresIn 过期时间
+ * @param expiresIn 过期时间，默认 15 分钟
  * @returns Token
  */
-export function signToken(payload: JwtPayload, expiresIn: SignOptions['expiresIn'] = '15h'): string {
+export function signToken(payload: JwtPayload, expiresIn: SignOptions['expiresIn'] = '15m'): string {
   const secret = useRuntimeConfig().JWT_SECRET
 
   return jwt.sign(payload, secret, { expiresIn })

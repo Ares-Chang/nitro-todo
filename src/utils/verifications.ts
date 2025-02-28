@@ -15,13 +15,3 @@ export function generateCode(length: number = 6, charset: string = '0123456789')
   }
   return code
 }
-
-/**
- * 生成验证码的 Redis 键
- * @param email - 邮箱
- * @param type - 类型
- * @returns 返回验证码的 Redis 键
- */
-export function generateVerificationCodeKey(email: string, type: 'register' | 'resetPassword') {
-  return `verification:${type}:${email}`
-}
