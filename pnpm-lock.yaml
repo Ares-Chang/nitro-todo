@@ -33,6 +33,9 @@ importers:
         specifier: ^3.24.2
         version: 3.24.2
     devDependencies:
+      '@AresChang/utils':
+        specifier: npm:@areschang/utils@^0.1.1
+        version: '@areschang/utils@0.1.1'
       '@antfu/eslint-config':
         specifier: ^4.2.0
         version: 4.2.0(@typescript-eslint/utils@8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(@vue/compiler-sfc@3.5.13)(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
@@ -115,6 +118,9 @@ packages:
 
   '@antfu/install-pkg@1.0.0':
     resolution: {integrity: sha512-xvX6P/lo1B3ej0OsaErAjqgFYzYVcJpamjLAFLYh9vRJngBrMoUG7aVnrGTeqM7yxbyTD5p3F2+0/QUEh8Vzhw==}
+
+  '@areschang/utils@0.1.1':
+    resolution: {integrity: sha512-IZhzOK5eiJ6whnQOiRxrML5IGct41A8fyg0QI1D1S5HfXE1i3SZP7XXVzocG0hMtWll3H0Uh5HdYCVcH07Qqgg==}
 
   '@babel/code-frame@7.26.2':
     resolution: {integrity: sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ==}
@@ -3671,6 +3677,8 @@ snapshots:
     dependencies:
       package-manager-detector: 0.2.9
       tinyexec: 0.3.2
+
+  '@areschang/utils@0.1.1': {}
 
   '@babel/code-frame@7.26.2':
     dependencies:

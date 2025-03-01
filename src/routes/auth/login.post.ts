@@ -9,12 +9,12 @@ export default defineEventHandler(async (event) => {
   if (!user)
     throw throwBadRequest('用户不存在')
 
-  const isPasswordMatch = await verifyPassword(password, user.user_credentials.password)
+  const isPasswordMatch = await verifyPassword(password, user.userCredentials.password)
 
   if (!isPasswordMatch)
     throw throwBadRequest('密码错误')
 
-  const token = signToken({ id: user.user_credentials.userId, name: user.user_profiles.name })
+  const token = signToken({ id: user.userCredentials.userId, name: user.userProfiles.name })
 
   return {
     data: token,

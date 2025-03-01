@@ -1,4 +1,5 @@
-import type { UserCreate } from '~/dtos/users'
+import type { UserCreate, UserResult } from '~/dtos/users'
+import { isEmail } from '@AresChang/utils'
 import { eq } from 'drizzle-orm'
 import { nanoid } from 'nanoid'
 import { userCredentials, userProfiles } from '~/db/schema/user'
@@ -37,17 +38,28 @@ export async function createUser(user: Omit<UserCreate, 'id' | 'userId' | 'code'
   }
 }
 
+export function getUser(id: string): Promise<UserResult | undefined>
+export function getUser(email: string): Promise<UserResult | undefined>
 /**
  * 获取用户
- * @param email 邮箱
+ * @param param 用户ID或邮箱
  * @returns 用户
  */
-export async function getUser(email: string) {
+export async function getUser(param: string): Promise<UserResult | undefined> {
   try {
-    return await db.select()
+    const isId = !isEmail(param)
+
+    const condition = isId
+      ? eq(userCredentials.userId, param)
+      : eq(userCredentials.email, param)
+
+    return await db.select({
+      userCredentials,
+      userProfiles,
+    })
       .from(userCredentials)
       .innerJoin(userProfiles, eq(userCredentials.userId, userProfiles.id))
-      .where(eq(userCredentials.email, email))
+      .where(condition)
       .then(result => result[0])
   }
   catch (error) {

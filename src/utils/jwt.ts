@@ -28,7 +28,9 @@ export function verifyToken(token: string): JwtPayload {
   const secret = useRuntimeConfig().JWT_SECRET
 
   try {
-    return jwt.verify(token, secret) as JwtPayload
+    const pureToken = token.replace('Bearer ', '')
+
+    return jwt.verify(pureToken, secret) as JwtPayload
   }
   catch (error) {
     console.error(error)

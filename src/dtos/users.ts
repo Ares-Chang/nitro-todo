@@ -13,10 +13,17 @@ const userCredentialsSchema = createInsertSchema(userCredentials, {
     .nonempty('密码不能为空'),
 })
 
-export const userCreateSchema = z.object({
+export const userSchema = z.object({
   ...userProfilesSchema.shape,
   ...userCredentialsSchema.shape,
-  code: z.string().nonempty('验证码不能为空'),
 })
 
+export const userCreateSchema = userSchema.merge(z.object({
+  code: z.string().nonempty('验证码不能为空'),
+}))
+
+export interface UserResult {
+  userCredentials: typeof userCredentials.$inferSelect
+  userProfiles: typeof userProfiles.$inferSelect
+}
 export type UserCreate = z.infer<typeof userCreateSchema>
