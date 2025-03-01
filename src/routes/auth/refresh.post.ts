@@ -3,7 +3,7 @@ import { refreshTokenSchema } from '~/dtos/auth'
 export default defineEventHandler(async (event) => {
   const { refreshToken } = await readValidatedBody(event, refreshTokenSchema.parse)
 
-  const user = event.context.user
+  const user = useUser(event)
 
   const key = getRedisRefreshTokenKey(user.userCredentials.userId)
   const cachedRefreshToken = await getRedisItem(key)

@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const user = event.context.user
+  const user = useUser(event)
 
   const key = getRedisRefreshTokenKey(user.userCredentials.userId)
   await removeRedisItem(key)

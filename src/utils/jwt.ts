@@ -1,5 +1,4 @@
 import type { SignOptions } from 'jsonwebtoken'
-import type { UserResult } from '~/dtos/users'
 import jwt from 'jsonwebtoken'
 
 // Token 载荷类型
@@ -37,18 +36,4 @@ export function verifyToken(token: string): JwtPayload {
     console.error(error)
     throw throwUnauthorized('无效的 Token')
   }
-}
-
-/**
- * 签发用户 Token
- * @param user 用户 数据
- * @returns Token
- */
-export function useToken(user: UserResult) {
-  const expiresIn = isDev ? '1d' : '15m'
-
-  return signToken({
-    id: user.userCredentials.userId,
-    name: user.userProfiles.name,
-  }, expiresIn)
 }
