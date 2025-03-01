@@ -85,3 +85,18 @@ export async function updateUser(id: string, user: Partial<UserResult['userProfi
     throw throwInternalServerError('更新用户失败')
   }
 }
+
+/**
+ * 更新用户密码
+ * @param id 用户ID
+ * @param password 密码
+ */
+export async function updateUserPassword(id: string, password: string) {
+  try {
+    await db.update(userCredentials).set({ password }).where(eq(userCredentials.userId, id))
+  }
+  catch (error) {
+    console.error(error)
+    throw throwInternalServerError('更新用户密码失败')
+  }
+}
