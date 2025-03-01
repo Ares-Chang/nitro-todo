@@ -14,7 +14,9 @@ export default defineEventHandler(async (event) => {
   if (!isPasswordMatch)
     throw throwBadRequest('密码错误')
 
-  const token = signToken({ id: user.userCredentials.userId, name: user.userProfiles.name })
+  const expiresIn = isDev ? '1d' : '15m'
+
+  const token = signToken({ id: user.userCredentials.userId, name: user.userProfiles.name }, expiresIn)
 
   return {
     data: token,
