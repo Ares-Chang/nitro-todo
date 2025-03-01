@@ -1,4 +1,4 @@
-import { createInsertSchema } from 'drizzle-zod'
+import { createInsertSchema, createUpdateSchema } from 'drizzle-zod'
 import { z } from 'zod'
 import { userCredentials, userProfiles } from '~/db/schema/user'
 
@@ -21,6 +21,12 @@ export const userSchema = z.object({
 export const userCreateSchema = userSchema.merge(z.object({
   code: z.string().nonempty('验证码不能为空'),
 }))
+
+export const userUpdateSchema = createUpdateSchema(userProfiles, {
+  name: schema => schema.nonempty('用户名不能为空'),
+  avatar: schema => schema.url('头像格式错误'),
+  bio: schema => schema.max(100, '个人简介不能超过 100 字'),
+})
 
 export interface UserResult {
   userCredentials: typeof userCredentials.$inferSelect

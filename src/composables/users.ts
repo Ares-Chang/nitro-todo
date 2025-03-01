@@ -67,3 +67,21 @@ export async function getUser(param: string): Promise<UserResult | undefined> {
     throw throwInternalServerError('获取用户失败')
   }
 }
+
+/**
+ * 更新用户
+ * @param id 用户ID
+ * @param user 用户
+ */
+export async function updateUser(id: string, user: Partial<UserResult['userProfiles']>) {
+  try {
+    await db.update(userProfiles).set({
+      ...user,
+      updatedAt: new Date(),
+    }).where(eq(userProfiles.id, id))
+  }
+  catch (error) {
+    console.error(error)
+    throw throwInternalServerError('更新用户失败')
+  }
+}
