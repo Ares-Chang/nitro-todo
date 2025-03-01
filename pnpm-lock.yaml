@@ -33,12 +33,12 @@ importers:
         specifier: ^3.24.2
         version: 3.24.2
     devDependencies:
-      '@AresChang/utils':
-        specifier: npm:@areschang/utils@^0.1.1
-        version: '@areschang/utils@0.1.1'
       '@antfu/eslint-config':
         specifier: ^4.2.0
         version: 4.2.0(@typescript-eslint/utils@8.24.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(@vue/compiler-sfc@3.5.13)(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
+      '@areschang/utils':
+        specifier: ^0.1.1
+        version: 0.1.1
       '@types/jsonwebtoken':
         specifier: ^9.0.9
         version: 9.0.9

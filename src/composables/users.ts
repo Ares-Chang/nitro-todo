@@ -1,5 +1,5 @@
 import type { UserCreate, UserResult } from '~/dtos/users'
-import { isEmail } from '@AresChang/utils'
+import { isEmail } from '@areschang/utils'
 import { eq } from 'drizzle-orm'
 import { nanoid } from 'nanoid'
 import { userCredentials, userProfiles } from '~/db/schema/user'

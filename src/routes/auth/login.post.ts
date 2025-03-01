@@ -1,3 +1,4 @@
+import { nid } from '@areschang/utils'
 import { getUser } from '~/composables/users'
 import { loginSchema } from '~/dtos/auth'
 
@@ -14,12 +15,18 @@ export default defineEventHandler(async (event) => {
   if (!isPasswordMatch)
     throw throwBadRequest('密码错误')
 
-  const expiresIn = isDev ? '1d' : '15m'
+  const token = useToken(user)
 
-  const token = signToken({ id: user.userCredentials.userId, name: user.userProfiles.name }, expiresIn)
+  const refreshToken = nid(32)
+
+  const key = getRedisRefreshTokenKey(user.userCredentials.userId)
+  await setRedisItem(key, refreshToken, 60 * 60 * 24 * 7)
 
   return {
-    data: token,
+    data: {
+      token,
+      refreshToken,
+    },
     message: '登录成功',
   }
 })

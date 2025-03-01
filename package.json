@@ -23,8 +23,8 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@AresChang/utils": "npm:@areschang/utils@^0.1.1",
     "@antfu/eslint-config": "^4.2.0",
+    "@areschang/utils": "^0.1.1",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/nodemailer": "^6.4.17",
     "dotenv": "^16.4.7",
