@@ -15,7 +15,9 @@ export default defineEventHandler(async (event) => {
     throw throwBadRequest(error?.errors[0].message)
 
   const fileName = `${Date.now()}-${file.name}`
-  const filePath = path.join(process.cwd(), 'public', 'uploads', fileName)
+
+  const { uploadDir } = useRuntimeConfig(event)
+  const filePath = path.join(process.cwd(), uploadDir, fileName)
 
   // 保存文件
   try {

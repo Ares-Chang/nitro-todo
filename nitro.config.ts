@@ -47,5 +47,6 @@ export default defineNitroConfig({
       pass: process.env.EMAIL_PASS,
     },
     JWT_SECRET: '',
+    uploadDir: './src/public/uploads',
   },
 })

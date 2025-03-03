@@ -5,3 +5,6 @@ dist
 .cache
 .output
 .env
+
+# 上传目录
+src/public/uploads
