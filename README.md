@@ -1,3 +1,22 @@
-# Nitro starter
+# Todo App API
 
-Look at the [nitro quick start](https://nitro.unjs.io/guide#quick-start) to learn more how to get started.
+这是一个基于 Nitro 的 Todo App API。
+
+## 依赖安装
+
+```bash
+pnpm install
+```
+
+## 数据库环境启动
+
+```bash
+pnpm docker:start
+pnpm db:migrate
+```
+
+## 运行
+
+```bash
+pnpm dev
+```
