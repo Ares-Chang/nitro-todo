@@ -1,7 +1,7 @@
 import { getUser } from '~/composables/users'
 
 // 白名单
-const whiteList = ['/auth/login', '/auth/register', '/auth/refresh', '/verifications']
+const whiteList = ['/', '/auth/login', '/auth/register', '/auth/refresh', '/verifications']
 
 export default defineEventHandler(async (event) => {
   if (!whiteList.includes(event.path)) {
