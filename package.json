@@ -6,7 +6,6 @@
     "docker:start": "docker compose up -d",
     "docker:stop": "docker compose stop",
     "docker:down": "docker compose down --volumes",
-    "db:init": "nr docker:start && nr db:migrate",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",

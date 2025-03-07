@@ -3,12 +3,12 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8
-    container_name: todo-mysql
+    container_name: ${MYSQL_NAME:-todo-mysql}
     environment:
-      MYSQL_DATABASE: mydb
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DB_NAME:-mydb}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
     ports:
-      - '3306:3306'
+      - '${DB_PORT:-3306}:3306'
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
@@ -19,10 +19,10 @@ services:
 
   redis:
     image: redis:7
-    container_name: todo-redis
-    command: redis-server --requirepass redis_password
+    container_name: ${REDIS_NAME:-todo-redis}
+    command: redis-server --requirepass ${REDIS_PASSWORD:-redis_password}
     ports:
-      - '6379:6379'
+      - '${REDIS_PORT:-6379}:6379'
     volumes:
       - redis_data:/var/lib/redis
     healthcheck:

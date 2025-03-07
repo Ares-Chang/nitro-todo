@@ -16,13 +16,21 @@ pnpm install
 cp .env.example .env
 ```
 
-## 数据库环境初始化
+## 初始化数据库 Docker 容器
 
 ```bash
-pnpm db:init
+pnpm docker:start
 ```
 
-> 仅在第一次运行时需要执行，后续运行直接 `pnpm docker:start` 即可
+## 数据库迁移
+
+数据库初始化完成后，稍等片刻，执行数据库迁移，如果报错请重试
+
+```bash
+pnpm db:migrate
+```
+
+> 仅在第一次运行或修改数据库结构时需要执行
 
 ## 运行
 
