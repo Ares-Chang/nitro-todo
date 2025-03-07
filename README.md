@@ -8,12 +8,21 @@
 pnpm install
 ```
 
-## 数据库环境启动
+## 环境变量
+
+复制 `.env.example` 文件并重命名为 `.env`
 
 ```bash
-pnpm docker:start
-pnpm db:migrate
+cp .env.example .env
 ```
+
+## 数据库环境初始化
+
+```bash
+pnpm db:init
+```
+
+> 仅在第一次运行时需要执行，后续运行直接 `pnpm docker:start` 即可
 
 ## 运行
 
