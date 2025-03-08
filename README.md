@@ -2,6 +2,15 @@
 
 这是一个基于 Nitro 的 Todo App API。
 
+## 技术栈
+
+- [Nitro](https://nitro.build/)
+- [Drizzle](https://drizzle.dev/)
+- [Zod](https://zod.dev/)
+- [MySQL](https://www.mysql.com/)
+- [Redis](https://redis.io/)
+- [Docker](https://www.docker.com/)
+
 ## 依赖安装
 
 ```bash
