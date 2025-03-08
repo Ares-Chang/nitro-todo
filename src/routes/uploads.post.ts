@@ -4,6 +4,65 @@ import path from 'node:path'
 import process from 'node:process'
 import { uploadSchema } from '~/dtos/uploads'
 
+defineRouteMeta({
+  openAPI: {
+    summary: '上传文件',
+    description: '上传文件',
+    tags: ['文件上传'],
+    security: [{
+      bearerAuth: [],
+    }],
+    requestBody: {
+      content: {
+        'multipart/form-data': {
+          schema: {
+            type: 'object',
+            properties: {
+              file: { type: 'string', format: 'binary' },
+            },
+            required: ['file'],
+          },
+        },
+      },
+    },
+    responses: {
+      200: {
+        description: '上传成功',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                data: {
+                  type: 'object',
+                  properties: {
+                    url: { type: 'string', example: '/uploads/123.jpg' },
+                  },
+                },
+                message: { type: 'string', example: '上传成功' },
+              },
+            },
+          },
+        },
+      },
+      500: {
+        description: '上传失败',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                code: { type: 'number', example: 500 },
+                message: { type: 'string', example: '文件保存失败' },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+})
+
 export default defineEventHandler(async (event) => {
   const formData = await readFormData(event)
 

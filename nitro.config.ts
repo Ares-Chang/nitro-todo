@@ -20,6 +20,15 @@ export default defineNitroConfig({
   compatibilityDate: '2025-02-13',
   experimental: {
     database: true,
+    openAPI: true,
+  },
+
+  openAPI: {
+    meta: {
+      title: 'TODO API',
+      description: 'Nitro TODO API',
+      version: '1.0.0',
+    },
   },
 
   storage: {
