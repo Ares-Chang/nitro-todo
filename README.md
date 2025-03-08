@@ -37,3 +37,13 @@ pnpm db:migrate
 ```bash
 pnpm dev
 ```
+
+## 文档
+
+文档基于 `nitro openAPI` 功能生成，详细参考文档 [Nitro OpenAPI](https://nitro.build/config#openapi)
+
+项目启动后访问即可查看文档
+
+- [scalar](http://localhost:3000/_scalar)
+- [swagger](http://localhost:3000/_swagger)
+- [openapi](http://localhost:3000/_openapi.json)
